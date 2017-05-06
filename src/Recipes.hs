@@ -6,6 +6,7 @@ module Recipes
 import           Control.Monad (void)
 import           Data.String.Conversions
 import           Devops.Debian.Base (deb)
+import           Devops.Debian.Commands (stack)
 import           Devops.Storage (FileContent, fileContent)
 import           Devops.Debian.User (User, mereUser)
 import           Devops.Base (DevOp)
@@ -15,11 +16,17 @@ recipes :: DevOp ()
 recipes = void $ do
     user
     packages
+    binaries
     dotFiles
 
 --------------------------------------------------------------------------------
 user :: DevOp User
 user = mereUser "user"
+
+--------------------------------------------------------------------------------
+binaries :: DevOp ()
+binaries = void $ do
+    stack
 
 --------------------------------------------------------------------------------
 packages :: DevOp ()
